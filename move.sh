@@ -1,6 +1,7 @@
 echo Starting;
 
 origin=/camera
+temp=$origin/temp
 samba_user=samba
 
 millis=$(date --date='+0 hour' +%s);
@@ -24,7 +25,7 @@ while [ true ]; do
 	fi
 	# echo -e "$date Run Check #$check";
 	num=0;
-	for f in $origin/temp/*.jpg; do
+	for f in $temp/*.jpg; do
 		if [ -f "$f" ] # does file exist?
 		then
 			chown -R samba $f
