@@ -1,0 +1,1 @@
+# camera-images-bash-manager
