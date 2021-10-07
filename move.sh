@@ -38,7 +38,7 @@ while [ true ]; do
 			num=$((num + 1));
 			echo $f >> $log;
 			echo $f;
-			python3 object-detection/deep_learning_object_detection.py --prototxt object-detection/MobileNetSSD_deploy.prototxt.txt --model object-detection/MobileNetSSD_deploy.caffemodel --image $f --save $origin/files/$datedir/object-detection/${f##*/} 
+			python3 $origin/object-detection/deep_learning_object_detection.py --prototxt $origin/object-detection/MobileNetSSD_deploy.prototxt.txt --model $origin/object-detection/MobileNetSSD_deploy.caffemodel --image $f --save $origin/files/$datedir/object-detection/${f##*/} 
 			cp $f $origin/latest.jpg
 			mv $f $origin/files/$datedir;
 		fi
