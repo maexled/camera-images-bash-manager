@@ -5,7 +5,7 @@ temp=$origin/temp
 samba_user=samba
 
 millis=$(date --date='+0 hour' +%s);
-log=move.txt;
+log=$origin/move.txt;
 printf "Log File - " > $log;
 date >> $log;
 

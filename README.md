@@ -16,13 +16,18 @@
    ```sh
    mkdir files
    ```
-3. Define variables in `move.sh` like your temp folder where the images will be uploaded
+3. Define variables in `move.sh` and `raffer.sh` like your temp folder where the images will be uploaded
    ```bash
     origin=/camera
     temp=$origin/temp
     samba_user=samba
-4. Start `move.sh` and `raffer.sh` in screen
+4. Start `move.sh` in screen
     ```sh
    bash move.sh
-   bash raffer.sh
    ```
+5. Create crontab for `raffer.sh`, for example crontab -e
+    ```sh
+   15 0 * * * bash /camera/raffer.sh
+   ```
+   This will execute everyday 00:15 the raffer script makes the video then.
+
