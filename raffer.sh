@@ -1,18 +1,23 @@
 echo Starting;
 
-origin=/camera
+DIR="$(cd "$(dirname "$0")" && pwd)"
 
-log=$origin/raffer.txt;
+source $DIR/config.cfg
 
-datediryesterday=$origin/files/$(date --date='-1 day' +'%Y/%m/%d')
+log=$DIR/raffer.txt;
+
+datediryesterday=$DIR/files/$(date --date='-1 day' +'%Y/%m/%d')
 
 fulldateyesterday=$(date --date='-1 day' +'%Y-%m-%d')
 
-printf "Starting for $fulldateyesterday" >> $log;
+echo "Starting for $fulldateyesterday" >> $log;
 
 cd $datediryesterday
 zip $fulldateyesterday.zip *.jpg
-zip -r $fulldateyesterday-object-detection.zip object-detection/
+
+if [ "$save_object_detection" == "true" ]; then
+	zip -r $fulldateyesterday-object-detection.zip object-detection/
+fi
 
 ls *.jpg | cat -n | while read n f; do mv "$f" "$n.jpg"; done #alle bilder numerieren
 for f in *.jpg ; do if [[ $f =~ [0-9]+\. ]] ; then  mv $f `printf "%.5d" "${f%.*}"`.jpg  ; fi ; done # alle numerierungen mit nullen auffüllen
@@ -22,6 +27,8 @@ rm *.jpg
 rm -rf object-detection
 
 # Upload Video to Nextcloud
-curl -T $datediryesterday/$fulldateyesterday.mp4 -u 'Maexled:ZVH3WafCCEU3bhZx' "https://nextcloud.maexled.de/remote.php/dav/files/Maexled/Kamera-Videos/$fulldateyesterday.mp4"
+if [ "$save_to_nextcloud" == "true" ]; then
+	curl -T $datediryesterday/$fulldateyesterday.mp4 -u '$nextcloud_username:$nextcloud_password' "$nextcloud_host/remote.php/dav/files/$nextcloud_username/$nextcloud_path/$fulldateyesterday.mp4"
+fi
 
-printf "Finished" >> $log;
+echo "Finished" >> $log;
