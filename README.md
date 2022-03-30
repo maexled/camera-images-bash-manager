@@ -18,14 +18,14 @@
    ```
 3. Define variables in `config.cfg`
    ```bash
-    	samba_user="samba"
-	object_detection="true"
-	save_object_detection="true"
-	save_to_nextcloud="true"
-	nextcloud_host="https://yournextcloud.com"
-	nextcloud_path="Videos"
-	nextcloud_username="Maexled"
-	nextcloud_password="YourSecretPassword"
+    samba_user="samba"
+    object_detection="true"
+    save_object_detection="true"
+    save_to_nextcloud="true"
+    nextcloud_host="https://yournextcloud.com"
+    nextcloud_path="Videos"
+    nextcloud_username="Maexled"
+    nextcloud_password="YourSecretPassword"
 4. Start `move.sh` in screen
     ```sh
    bash move.sh
