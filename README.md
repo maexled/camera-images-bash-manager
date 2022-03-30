@@ -18,7 +18,7 @@
    ```
 3. Define variables in `config.cfg`
    ```bash
-    samba_user="samba"
+    	samba_user="samba"
 	object_detection="true"
 	save_object_detection="true"
 	save_to_nextcloud="true"
