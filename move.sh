@@ -25,7 +25,7 @@ while [ true ]; do
 		echo "Set ownership of $origin/files/$datedir to samba"
 		mkdir -p $DIR/files/$datedir
 		mkdir -p $DIR/files/$datedir/object-detection
-		chown -R $samba_user $origin/files/$datedir
+		chown -R $samba_user $DIR/files/$datedir
 	fi
 	# echo -e "$date Run Check #$check";
 	num=0;
