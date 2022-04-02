@@ -1,3 +1,6 @@
+### About the Project
+The project is designed to manage images uploaded by a (Hikvision) IP-Camera in a folder using FTP. The images in the `temp/` Folder are moved by the `move.sh` script in the right folder named by it's current date. Every night should be the `raffer.sh` script automatically started to render the images to one full video. Optionally the videos are uploaded to specific nextcloud server, configurable in `config.cfg`
+
 ### Prerequisites
 
 * ffmpeg
