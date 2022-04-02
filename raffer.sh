@@ -28,7 +28,7 @@ rm -rf object-detection
 
 # Upload Video to Nextcloud
 if [ "$save_to_nextcloud" == "true" ]; then
-	curl -T $datediryesterday/$fulldateyesterday.mp4 -u '$nextcloud_username:$nextcloud_password' "$nextcloud_host/remote.php/dav/files/$nextcloud_username/$nextcloud_path/$fulldateyesterday.mp4"
+	curl -T $datediryesterday/$fulldateyesterday.mp4 -u $nextcloud_username:$nextcloud_password "$nextcloud_host/remote.php/dav/files/$nextcloud_username/$nextcloud_path/$fulldateyesterday.mp4"
 fi
 
 echo "Finished" >> $log;
