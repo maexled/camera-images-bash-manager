@@ -12,6 +12,9 @@ fulldateyesterday=$(date --date='-1 day' +'%Y-%m-%d')
 
 echo "Starting for $fulldateyesterday" >> $log;
 
+echo "Checking for broken images..."
+python3 $DIR/delete_broken_images.py -f $datediryesterday
+
 cd $datediryesterday
 zip $fulldateyesterday.zip *.jpg
 
