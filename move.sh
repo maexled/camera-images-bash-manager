@@ -34,11 +34,11 @@ while [ true ]; do
 		if [ -f "$f" ] # does file exist?
 		then
 			chown $samba_user $f
-			# Upload Video to Nextcloud
+			# Save pictures at least every new hour in longtime
 			if [ "$save_longtime_pictures" == "true" ]; then
 				if [ $(date +%H) -ne $last ]
 				then
-					echo "New longtime picture, bow $(date +%H), last was $last"
+					echo "New longtime picture, now $(date +%H), last was $last"
 					cp $f $DIR/files/raffer/longtime/
 					last=$(date +%H);
 				fi
