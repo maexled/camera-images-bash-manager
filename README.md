@@ -21,8 +21,10 @@ The project is designed to manage images uploaded by a (Hikvision) IP-Camera in 
    ```
 3. Define variables in `config.cfg`
    ```bash
+    fps="10"
     samba_user="samba"
     object_detection="true"
+    save_longtime_pictures="true"
     save_object_detection="true"
     save_to_nextcloud="true"
     nextcloud_host="https://yournextcloud.com"
