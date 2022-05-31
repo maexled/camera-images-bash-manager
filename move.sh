@@ -14,6 +14,9 @@ check=1;
 # For longtime picture of the hour to move at least every hour a picture if enabled
 last=-1;
 
+# Store last day raffer was executed so it do not happens multiple times on day
+raffer_last_executed_day=-1
+
 while [ true ]; do
 	date=$(date --date='+0 hour' +'%m/%d/%Y, %H:%M:%S')
 	datedir=$(date --date='+0 hour' +'%Y/%m/%d')
@@ -54,5 +57,14 @@ while [ true ]; do
 		fi
 	done;
 	check=$((check + 1));
+
+	# Check for time to start raffer
+	if [ $(date +%H:%M) == "$raffer_execution" ] && [ $(date +%d) -ne "$raffer_last_executed_day" ];
+	then
+		raffer_last_executed_day=$(date +%d)
+		echo "Starting raffer in background..."
+		bash $DIR/raffer.sh &
+	fi
+
 	sleep 1;
 done;

@@ -9,6 +9,7 @@ The project is designed to manage images uploaded by a (Hikvision) IP-Camera in 
 * python3
 
 ### Installation
+#### Be stupid and do it with bash
 
 1. Clone the repo
    ```sh
@@ -21,16 +22,17 @@ The project is designed to manage images uploaded by a (Hikvision) IP-Camera in 
    ```
 3. Define variables in `config.cfg`
    ```bash
-    fps="10"
-    samba_user="samba"
-    object_detection="true"
-    save_longtime_pictures="true"
-    save_object_detection="true"
-    save_to_nextcloud="true"
-    nextcloud_host="https://yournextcloud.com"
-    nextcloud_path="Videos"
-    nextcloud_username="Maexled"
-    nextcloud_password="YourSecretPassword"
+   fps="10"
+   raffer_execution="00:15"
+   samba_user="samba"
+   object_detection="true"
+   save_longtime_pictures="true"
+   save_object_detection="true"
+   save_to_nextcloud="true"
+   nextcloud_host="https://yournextcloud.com"
+   nextcloud_path="Videos"
+   nextcloud_username="Maexled"
+   nextcloud_password="YourSecretPassword"
 4. Start `move.sh` in screen
     ```sh
    bash move.sh
@@ -41,3 +43,13 @@ The project is designed to manage images uploaded by a (Hikvision) IP-Camera in 
    ```
    This will execute everyday 00:15 the raffer script makes the video then.
 
+#### Be smart and do it with docker!
+```sh
+docker run \
+   --name camera-images-manager \
+   -v /home/max/cameratest/files:/camera/files \
+   -v /home/max/cameratest/temp:/camera/temp \
+   -v /home/max/cameratest/config.cfg:/camera/config.cfg \
+   -e TZ=Europe/Berlin \
+   camera-images-bash 
+```
