@@ -2,7 +2,7 @@ echo Starting;
 
 DIR="$(cd "$(dirname "$0")" && pwd)"
 
-source $DIR/config.cf
+source $DIR/config.cfg
 
 datediryesterday=$DIR/files/$(date --date='-1 day' +'%Y/%m/%d')
 fulldateyesterday=$(date --date='-1 day' +'%Y-%m-%d')
