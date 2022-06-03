@@ -61,7 +61,7 @@ docker run \
    -v /home/max/cameratest/temp:/camera/temp \
    -v /home/max/cameratest/config.cfg:/camera/config.cfg \
    -e TZ=Europe/Berlin \
-   camera-images-bash
+   ghcr.io/maexled/camera-images-bash-manager
 ```
 #### Configuration variables in config.cfg:
 - `samba_user` - recommened to set it as root. In container no extra user will be created.
