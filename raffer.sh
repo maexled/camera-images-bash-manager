@@ -1,3 +1,5 @@
+#!/bin/bash
+
 echo Starting;
 
 DIR="$(cd "$(dirname "$0")" && pwd)"

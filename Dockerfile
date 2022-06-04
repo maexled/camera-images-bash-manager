@@ -15,4 +15,5 @@ RUN apt update && \
 COPY . .
 RUN mkdir files
 
-CMD ["bash", "move.sh"]
+RUN chmod a+x docker-entrypoint.sh
+CMD ["./docker-entrypoint.sh"]
