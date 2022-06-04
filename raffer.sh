@@ -12,8 +12,11 @@ fulldateyesterday=$(date --date='-1 day' +'%Y-%m-%d')
 
 echo "Starting for $fulldateyesterday" >> $log;
 
-echo "Checking for broken images..."
-python3 $DIR/delete_broken_images.py -f $datediryesterday
+
+if [ "$check_for_broken_images" == "true" ]; then
+	echo "Checking for broken images..."
+	python3 $DIR/delete_broken_images.py -f $datediryesterday
+fi
 
 cd $datediryesterday
 zip $fulldateyesterday.zip *.jpg
@@ -23,7 +26,7 @@ if [ "$save_object_detection" == "true" ]; then
 fi
 
 ls *.jpg | cat -n | while read n f; do mv "$f" "$n.jpg"; done #alle bilder numerieren
-for f in *.jpg ; do if [[ $f =~ [0-9]+\. ]] ; then  mv $f `printf "%.5d" "${f%.*}"`.jpg  ; fi ; done # alle numerierungen mit nullen auffüllen
+for f in *.jpg ; do if [[ $f =~ [0-9]+\. ]] ; then  mv $f `printf "%.5d" "${f%.*}"`.jpg  ; fi ; done # alle numerierungen mit nullen auffï¿½llen
 ffmpeg -framerate 10 -i %05d.jpg -c:v libx264 -profile:v high -crf 20 -pix_fmt yuv420p $datediryesterday/$fulldateyesterday.mp4 # video bauen
 
 rm *.jpg

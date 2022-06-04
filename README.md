@@ -23,6 +23,7 @@ The project is designed to manage images uploaded by a (Hikvision) IP-Camera in 
    ```bash
     samba_user="samba"
     object_detection="true"
+    check_for_broken_images="true"
     save_object_detection="true"
     save_to_nextcloud="true"
     nextcloud_host="https://yournextcloud.com"
