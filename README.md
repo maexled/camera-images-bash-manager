@@ -30,6 +30,7 @@ The project is designed to manage images uploaded by a (Hikvision) IP-Camera in 
    raffer_execution="00:15"
    samba_user="samba"
    object_detection="true"
+   check_for_broken_images="true"
    save_longtime_pictures="true"
    save_object_detection="true"
    save_to_nextcloud="true"
