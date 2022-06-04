@@ -23,7 +23,7 @@ while [ true ]; do
 	
 	if [[ ! -d $DIR/files/$datedir/ ]]
 	then
-		echo "Set ownership of $origin/files/$datedir to samba"
+		echo "Set ownership of $origin/files/$datedir to $samba_user"
 		mkdir -p $DIR/files/$datedir
 		if [ "$object_detection" == "true" ]; then
 			mkdir -p $DIR/files/$datedir/object-detection
