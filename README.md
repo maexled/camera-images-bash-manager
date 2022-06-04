@@ -29,6 +29,7 @@ The project is designed to manage images uploaded by a (Hikvision) IP-Camera in 
    fps="10"
    raffer_execution="00:15"
    samba_user="samba"
+   samba_uid="1000"
    object_detection="true"
    check_for_broken_images="true"
    save_longtime_pictures="true"
@@ -65,5 +66,5 @@ docker run \
    ghcr.io/maexled/camera-images-bash-manager
 ```
 #### Configuration variables in config.cfg:
-- `samba_user` - recommened to set it as root. In container no extra user will be created.
-
+- `samba_user` - The user that should own the files. Will be created in docker container
+- `samba_uid` - The uid of the user.
