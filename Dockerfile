@@ -9,6 +9,7 @@ RUN apt update && \
     apt install ffmpeg zip curl -y && \
     pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt && \
+    apt autoremove -y && \
     rm -rf /var/lib/apt/lists/*
 
 
