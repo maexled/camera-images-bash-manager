@@ -20,7 +20,6 @@ last=-1;
 raffer_last_executed_day=-1
 
 while [ true ]; do
-	date=$(date --date='+0 hour' +'%m/%d/%Y, %H:%M:%S')
 	datedir=$(date --date='+0 hour' +'%Y/%m/%d')
 	
 	if [[ ! -d $DIR/files/$datedir/ ]]
@@ -38,14 +37,20 @@ while [ true ]; do
 	for f in $temp/*.jpg; do
 		if [ -f "$f" ] # does file exist?
 		then
-			chown $samba_user $f
-			# Save pictures at least every new hour in longtime
-			if [ "$save_longtime_pictures" == "true" ]; then
-				if [ $(date +%H) -ne $last ]
-				then
-					echo "New longtime picture, now $(date +%H), last was $last"
-					cp $f $DIR/files/raffer/longtime/
-					last=$(date +%H);
+			# Check if the file has been modified in the last 5 seconds
+			current_time=$(date +%s)
+			file_modified_time=$(stat -c %Y "$f")
+
+			if [ $((current_time - file_modified_time)) -gt 5 ]; then
+				chown $samba_user $f
+				# Save pictures at least every new hour in longtime
+				if [ "$save_longtime_pictures" == "true" ]; then
+					if [ $(date +%H) -ne $last ]
+					then
+						echo "New longtime picture, now $(date +%H), last was $last"
+						cp $f $DIR/files/raffer/longtime/
+						last=$(date +%H);
+					fi
 				fi
 			fi
 			num=$((num + 1));
