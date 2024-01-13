@@ -52,15 +52,15 @@ while [ true ]; do
 						last=$(date +%H);
 					fi
 				fi
+				num=$((num + 1));
+				echo $f
+				
+				if [ "$object_detection" == "true" ]; then
+					python3 $DIR/object-detection/deep_learning_object_detection.py --prototxt $DIR/object-detection/MobileNetSSD_deploy.prototxt.txt --model $DIR/object-detection/MobileNetSSD_deploy.caffemodel --image $f --save $DIR/files/$datedir/object-detection/${f##*/} 
+				fi
+				cp $f $DIR/latest.jpg
+				mv $f $DIR/files/$datedir;
 			fi
-			num=$((num + 1));
-			echo $f
-			
-			if [ "$object_detection" == "true" ]; then
-				python3 $DIR/object-detection/deep_learning_object_detection.py --prototxt $DIR/object-detection/MobileNetSSD_deploy.prototxt.txt --model $DIR/object-detection/MobileNetSSD_deploy.caffemodel --image $f --save $DIR/files/$datedir/object-detection/${f##*/} 
-			fi
-			cp $f $DIR/latest.jpg
-			mv $f $DIR/files/$datedir;
 		fi
 	done;
 	check=$((check + 1));
